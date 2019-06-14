@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     // -----------------------------------------------------------------
     // フィールド
     public static final String TAG = "MainActivity";
-    public static final int MEDIA_RES_ID = R.raw.jazz_in_paris;
+    public static final int MEDIA_RES_ID = R.raw.speech;
 
     private TextView mTextDebug;
     private SeekBar mSeekbarAudio;
