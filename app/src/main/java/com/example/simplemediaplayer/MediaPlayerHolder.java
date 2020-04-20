@@ -2,12 +2,17 @@ package com.example.simplemediaplayer;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ *  {@link MainActivity}で音楽再生を制御インターフェースに{@link PlayerAdapter}を使い
+ *  {@link MediaPlayer}の機能を出しています。
+ */
 public final class MediaPlayerHolder implements PlayerAdapter {
 
     public static final int PLAYBACK_POSITION_REFRESH_INTERVAL_MS = 1000;
@@ -23,6 +28,13 @@ public final class MediaPlayerHolder implements PlayerAdapter {
         mContext = context.getApplicationContext();
     }
 
+
+    /**
+     * {@link MediaPlayer}がリリースされると、それを再び使用することはできません、そして別のものを作成する必要があります。
+     * {@link MainActivity}のonStop（）メソッドで、{@link MediaPlayer}がリリースされました。
+     * それから{@link MainActivity}のonStart（）で新しい{@link MediaPlayer}オブジェクトを作成しなければなりません。
+     * それが、このメソッドがプライベートであり、コンストラクタではなくload（int）によって呼び出される理由です。
+     */
     private void initializeMediaPlayer() {
         if (mMediaPlayer == null) {
             mMediaPlayer = new MediaPlayer();
@@ -37,6 +49,12 @@ public final class MediaPlayerHolder implements PlayerAdapter {
                     }
                 }
             });
+
+            // ハードの音量を最大化
+//            AudioManager manager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
+//            int vol = manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+//            manager.setStreamVolume(AudioManager.STREAM_MUSIC, vol, 0);
+            mMediaPlayer.setVolume(1.0f,1.0f);
             logToUI("mMediaPlayer = new MediaPlayer()");
         }
     }

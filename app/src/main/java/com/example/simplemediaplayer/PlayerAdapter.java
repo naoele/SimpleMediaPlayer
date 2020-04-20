@@ -1,5 +1,8 @@
 package com.example.simplemediaplayer;
 
+/**
+ * {@link MainActivity}が{@link MediaPlayerHolder}のメディア再生を制御できるようにします。
+ */
 public interface PlayerAdapter {
 
     void loadMedia(int resourceId);

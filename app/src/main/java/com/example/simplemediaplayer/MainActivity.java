@@ -10,7 +10,11 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * UIを介してamrファイルを再生するアクティビティ。
+ * {@link MediaPlayerHolder}にはオーディオ再生を制御するインターフェース{@link PlayerAdapter}が含まれています。
+ */
+public final class MainActivity extends AppCompatActivity {
 
     // -----------------------------------------------------------------
     // フィールド
@@ -130,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPositionChanged(int position) {
             if (!mUserIsSeeking) {
-//                mSeekbarAudio.setProgress(position, true);
+                mSeekbarAudio.setProgress(position, true);
                 Log.d(TAG, String.format("setPlaybackPosition: setProgress(%d)", position));
             }
         }

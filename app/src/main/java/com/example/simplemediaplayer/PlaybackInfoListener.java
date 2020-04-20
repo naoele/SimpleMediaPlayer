@@ -5,6 +5,9 @@ import androidx.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * {@link MediaPlayerHolder}がメディアの再生期間と進行状況の更新を{@link MainActivity}に報告できるようにします。
+ */
 public abstract class PlaybackInfoListener {
 
     @IntDef({State.INVALID, State.PLAYING, State.PAUSED, State.RESET, State.COMPLETED})
